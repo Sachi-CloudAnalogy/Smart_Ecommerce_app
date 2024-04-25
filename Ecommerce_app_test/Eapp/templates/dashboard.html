@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products Page</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+
+<body>
+    <!-- Flash messages -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+    <ul class="flash-messages">
+        <!-- {% for category, message in messages %} -->
+            <li class="alert alert-{{ category }}">{{ message }}</li>
+        <!-- {% endfor %} -->
+    </ul>
+{% endif %}
+{% endwith %}
+
+    <section style="height: 5vh;">
+        <header>
+            <a href="/" class="logo">Smart<span>Buy</span></a>
+            <ul>
+                <li><a href="{{url_for('login_app.first')}}">Home</a></li>
+                <li><a href="{{url_for('login_app.about')}}">About</a></li>
+                <li><a href="{{url_for('login_app.dashboard')}}">Products</a></li>
+                <li><a href="{{url_for('product.carts')}}">Cart</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <p><a href="{{url_for('login_app.logout')}}">Logout</a></p>
+        </header>
+    </section>
+    <div class="about">
+        <h1 style="text-align:center;font-size:xx-large;">Categories</h1>
+        <div class="box">
+            <div class="card">
+                <a href="{{ url_for('product.show_added_item') }}"><img src="static/Images/il.png"></a>
+            </div>
+            <div class="card">
+                <a href="{{ url_for('product.show_added_item') }}"><img src="static/Images/im.png"></a>
+            </div>
+            <div class="card">
+                <a href="{{ url_for('product.show_added_item') }}"><img src="static/Images/if.png"></a>
+            </div>
+            <div class="card">
+                <a href="{{ url_for('product.show_added_item') }}"><img src="static/Images/itv.png"></a>
+            </div>
+            <div class="card">
+                <a href="{{ url_for('product.show_added_item') }}"><img src="static/Images/iwm.png"></a>
+            </div>
+        </div>
+        <hr>
+        <div class="Clothes">
+            <h1>Products</h1>
+            <br><br>
+            <p><a href="{{ url_for('product.show_added_item') }}">Show all the available items</a></p>
+            <br>
+            <p>----Electronics----</p>
+            <div class="clothes_box">
+                <div class="clothes_card">
+                    <img src="static/Images/tv.jpg">
+                    <h1>TV</h1>
+                    <p>price : ₹24,499/-</p>
+                    <a href="{{ url_for('product.show_added_item') }}" class="btn">Shop Now</a>
+                </div>
+                <div class="clothes_card">
+                    <img src="static/Images/laptop.avif" style="height:220px;">
+                    <h1>Laptop</h1>
+                    <p>price : ₹44,999/-</p>
+                    <a href="{{ url_for('product.show_added_item') }}" class="btn">Shop Now</a>
+                </div>
+                <div class="clothes_card">
+                    <img src="static/Images/phone.jpeg">
+                    <h1>Mobile</h1>
+                    <p>price : ₹59,999/-</p>
+                    <a href="{{ url_for('product.show_added_item') }}" class="btn">Shop Now</a>
+                </div>
+                <div class="clothes_card">
+                    <img src="static/Images/washing_machine.jpeg">
+                    <h1>Washing Machine</h1>
+                    <p>price : ₹19,999/-</p>
+                    <a href="{{ url_for('product.show_added_item') }}" class="btn">Shop Now</a>
+                </div>
+            </div>
+            <br><br><br>
+            <p><a href="{{ url_for('product.products') }}" class="btn">Add More Items to the site</a></p>
+        </div>
+       
+       
+    </div>
+   
+</div>
+
+    
+
+</body>
+
+</html>

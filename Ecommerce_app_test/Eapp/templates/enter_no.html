@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %} Number Verification {% endblock %}
+{% block content %}
+
+<section style="height: 5vh;">
+    <header>
+        <a href="/" class="logo">Smart<span>Buy</span></a>
+        <ul>
+            <li><a href="{{url_for('login_app.first')}}">Home</a></li>
+            <li><a href="{{url_for('login_app.about')}}">About</a></li>
+            <li><a href="{{url_for('login_app.dashboard')}}">Products</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <ul>
+        <li><p><a href="{{url_for('login_app.register')}}">Sign up</a></p></li>
+        <li><a href="{{url_for('login_app.home')}}"><p>Sign In</p></a></li>
+        </ul>
+    </header>
+</section>   
+
+<br>
+<br><br><br>
+<form action="{{ url_for('phone_app.phone') }}" method="POST">
+    <div style="margin-left:20%;">
+        <h1>SignIn with Phone Number</h1>
+        <br>
+        <label>Enter Mobile Number</label>
+        <br><br>
+        <input type="text" name="number" placeholder="+91**********">
+        <button type="submit" class="btn btn-info my-3 mx-5">Get Otp</button>
+    </div>
+</form>
+
+<!-- Link to CSS file -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+{% endblock %}
