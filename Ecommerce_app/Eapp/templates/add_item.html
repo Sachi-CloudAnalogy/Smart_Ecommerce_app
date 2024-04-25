@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %} Add Item Page {% endblock %}
+{% block content %}
+
+<section style="height: 5vh;">
+  <header>
+      <a href="/" class="logo">Smart<span>Buy</span></a>
+      <ul>
+          <li><a href="{{url_for('login_app.first')}}">Home</a></li>
+          <li><a href="{{url_for('login_app.about')}}">About</a></li>
+          <li><a href="{{url_for('login_app.dashboard')}}">Products</a></li>
+          <li><a href="#">Contact</a></li>
+      </ul>
+      <p><a href="{{url_for('login_app.logout')}}">Logout</a></p>
+  </header>
+</section>
+
+<br><br><br>
+<form method="POST" action="{{ url_for('product.products') }}" enctype="multipart/form-data">
+    <div class="mb-3 mx-5" style="width:400px">
+      <label for="pname" class="form-label">Product Name</label>
+      <input type="text" name="product_name" class="form-control" id="pname" >
+
+      <label for="cprice" class="form-label">Current Price</label>
+      <input type="text" name="current_price" class="form-control" id="cprice" >
+
+      <label for="pprice" class="form-label">Previous price</label>
+      <input type="text" name="previous_price" class="form-control" id="pprice" >
+
+      <label for="in_stock" class="form-label">in_stock</label>
+      <input type="text" name="in_stock" class="form-control" id="in_stock" >
+
+      <!-- <label for="ppic" class="form-label">Product picture</label>
+      <input type="file" name="product_picture" class="form-control" id="ppic"> -->
+
+    
+    </div>
+    <button type="submit" class="btn btn-info my-3 mx-5">Add Product</button>
+    <button type="submit" class="btn btn-info my-3 mx-5">Update Product</button>
+    <br>
+    <a href="{{ url_for('product.show_added_item') }}">Show all the added items</a>
+</form>
+
+<!-- Link to CSS file -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+{% endblock %}

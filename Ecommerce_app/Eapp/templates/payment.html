@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %} Cart {% endblock %}
+{% block content %}
+
+<section style="height: 5vh;">
+    <header>
+        <a href="/" class="logo">Smart<span>Buy</span></a>
+        <ul>
+            <li><a href="{{url_for('login_app.first')}}">Home</a></li>
+            <li><a href="{{url_for('login_app.about')}}">About</a></li>
+            <li><a href="{{url_for('login_app.dashboard')}}">Products</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <p><a href="{{url_for('login_app.logout')}}">Logout</a></p>
+    </header>
+</section>
+
+<br>
+<h1 class="mx-5 my-5">--------PAYMENT--------</h1><br>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Price</th>  
+            <th scope="col">Quantity</th>
+            <th scope="col">Total Price</th>
+            <!-- <th scope="col">Product Picture</th> -->
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        <tr>
+                <th scope="row">{{ item.id }}</th>
+                <td>{{ item.product_name }}</td>
+                <td>{{ item.current_price }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.total_price }}</td>
+                
+                <!-- <td><img src="{{ item.product_picture }}" alt="" style="height: 50px; width: 50px; border-radius: 2px;"></td> -->
+    
+                <td>
+                    <a href="{{ url_for('pay_app.pay', price=item.total_price, sno=item.sno) }}"><button type="button" class="btn btn-dark">Pay</button></a>
+                    
+                </td>
+        </tr>
+
+
+    </tbody>
+</table>
+
+<!-- Link to CSS file -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+{% endblock %}
