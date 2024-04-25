@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %} Cart {% endblock %}
+{% block content %}
+
+<section style="height: 5vh;">
+    <header>
+        <a href="/" class="logo">Smart<span>Buy</span></a>
+        <ul>
+            <li><a href="{{url_for('login_app.first')}}">Home</a></li>
+            <li><a href="{{url_for('login_app.about')}}">About</a></li>
+            <li><a href="{{url_for('login_app.dashboard')}}">Products</a></li>
+            <li><a href="{{url_for('product.carts')}}">Cart</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <p><a href="{{url_for('login_app.logout')}}">Logout</a></p>
+    </header>
+</section>
+
+<br>
+<h1 class="mx-5 my-5">--------CART--------</h1><br>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Current Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total Price</th>
+            <!-- <th scope="col">Product Picture</th> -->
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in items %}
+        <tr>
+                <th scope="row">{{ item.id }}</th>
+                <td>{{ item.product_name }}</td>
+                <td>{{ item.current_price }}</td>
+                
+                <td><form action="{{ url_for('product.cart', id=item.id) }}" method="POST">
+                    <!-- <input type="text" placeholder="{{item.quantity if item.quantity else 1}}" name="quantity" value="1"> -->
+                    <input type="number" name="quantity" value="{{ item.quantity if item.quantity else 1 }}" min="1">
+                    <button type="submit" class="btn btn-primary mt-2">Add</button>
+                </form></td>
+                <!-- <td><img src="{{ item.product_picture }}" alt="" style="height: 50px; width: 50px; border-radius: 2px;"></td> -->
+                <td>{{ item.total_price }}</td>
+                <td><a href="{{ url_for('product.cart_del', sno=item.sno) }}"><button type="button" class="btn btn-dark">Delete</button></a></td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Grand Total : {{grand_total}}</td></tr>
+        <tr>
+           
+           <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><a href="{{ url_for('product.show_added_item') }}"><button type="button" class="btn btn-dark">Add more items</button></a></td>
+            <td><a href="{{ url_for('product.payment', total=grand_total) }}"><button type="button" class="btn btn-dark">Pay Now</button></a></td>
+        </tr>
+
+
+    </tbody>
+</table>
+
+<!-- Link to CSS file -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+{% endblock %}
