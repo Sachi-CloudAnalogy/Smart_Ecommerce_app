@@ -8,11 +8,6 @@ from .models import Eapp
 import requests
 
 
-# app_conf = {"OAUTH2_CLIENT_ID": "135553744176-spo97g44ksc0d2nqp88pakpg9f1seauf.apps.googleusercontent.com",
-#             "OAUTH2_CLIENT_SECRET": "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",
-#             "OAUTH2_META_URL": "https://accounts.google.com/.well-known/openid-configuration",
-#             "FLASK_SECRET": "secret",
-#             "FLASK_PORT": 5000}
 
 # oauth = OAuth()
 # oauth.register("myApp",
