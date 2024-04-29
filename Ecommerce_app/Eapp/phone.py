@@ -1,11 +1,16 @@
 from flask import Blueprint, request, url_for, render_template, session, redirect
-from twilio.rest import Client  
+from twilio.rest import Client
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()  
 
 phone_app = Blueprint("phone_app", __name__)
 
-account_sid = "ACaa062546f6a246251954bf4b6cf2bee2"
-auth_token = "5ff2d511bc711411ee67db043d97980f"
-verify_sid = "VA74862719853d791a2356ef7df0525f3c"
+account_sid = "ACaa062546f6a246251954bf4b6cf2bee2" #os.getenv('Account_sid')
+auth_token = "5ff2d511bc711411ee67db043d97980f" #os.getenv('Auth_token')
+verify_sid = "VA74862719853d791a2356ef7df0525f3c" #os.getenv('Verify_sid')
 client = Client(account_sid, auth_token)
 
 

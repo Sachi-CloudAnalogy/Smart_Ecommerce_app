@@ -2,16 +2,20 @@ from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from authlib.integrations.flask_client import OAuth
+import os
+from dotenv import load_dotenv
 
+# Load environment variables from .env file
+load_dotenv()
 
 db = SQLAlchemy()
 oauth = OAuth()
 
-app_conf = {"OAUTH2_CLIENT_ID": "135553744176-spo97g44ksc0d2nqp88pakpg9f1seauf.apps.googleusercontent.com",
-            "OAUTH2_CLIENT_SECRET": "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",
-            "OAUTH2_META_URL": "https://accounts.google.com/.well-known/openid-configuration",
-            "FLASK_SECRET": "secret",
-            "FLASK_PORT": 5000}
+app_conf = {"OAUTH2_CLIENT_ID": os.getenv('OAUTH2_CLIENT_ID'),
+            "OAUTH2_CLIENT_SECRET": os.getenv('OAUTH2_CLIENT_SECRET'),
+            "OAUTH2_META_URL": os.getenv('OAUTH2_META_URL'),
+            "FLASK_SECRET": os.getenv('FLASK_SECRET'),
+            "FLASK_PORT": os.getenv('FLASK_PORT')}
 
 oauth.register("myApp",
                client_id=app_conf.get("OAUTH2_CLIENT_ID"),
@@ -21,19 +25,20 @@ oauth.register("myApp",
                 ) 
 
 
+
 def create_database():
     db.create_all()
     print('Database Created')
 
 def create_app():
     app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:sfdc123*@localhost:5432/postgres'
-    app.config['SECRET_KEY'] = 'secret'
-    app.config['SERVER_NAME'] = 'localhost:5000'
+    app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:sfdc123*@localhost:5432/postgres"
+    app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET')
+    app.config['SERVER_NAME'] = os.getenv('SERVER_NAME', 'localhost:5000')
 
     db.init_app(app)
 
-    app.config.update(app_conf)
+    #app.config.update(app_conf)
     oauth.init_app(app)
 
     login_manager = LoginManager()     #help in logging in

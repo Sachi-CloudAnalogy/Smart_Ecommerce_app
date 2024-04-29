@@ -2,14 +2,19 @@ from flask import Flask, render_template, redirect, session, url_for, Blueprint
 from authlib.integrations.flask_client import OAuth
 from flask_login import current_user, logout_user
 from . import oauth
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 fb_app = Blueprint("fb_app",__name__)
 
 @fb_app.route('/facebook_login')
 def facebook_login():
    
-    FACEBOOK_CLIENT_ID = "420884517256810"      
-    FACEBOOK_CLIENT_SECRET = "bb9c73950491e8421739789ecf95a7bc"    
+    FACEBOOK_CLIENT_ID = os.getenv('FACEBOOK_CLIENT_ID')      
+    FACEBOOK_CLIENT_SECRET = os.getenv('FACEBOOK_CLIENT_SECRET')    
     oauth.register(
         name='facebook',
         client_id=FACEBOOK_CLIENT_ID,

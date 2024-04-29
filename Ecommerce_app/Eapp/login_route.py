@@ -55,54 +55,54 @@ def register():
         return render_template("register.html")    
 
 
-# @login_app.route("/dashboard", methods=['GET', 'POST'])
-# def dashboard():
-#     if current_user.is_authenticated or session.get("user"):
-#         # User is authenticated either by Flask-Login or by Google OAuth
-#         return render_template("dashboard.html", user=current_user)
-#     else:
-#         # User is not authenticated with either Flask-Login or Google OAuth
-#         flash("You need to be logged in to access the dashboard.", "warning")
-#         return redirect(url_for("login_app.home"))
-    
 @login_app.route("/dashboard", methods=['GET', 'POST'])
 def dashboard():
     if current_user.is_authenticated or session.get("user"):
-        # User is authenticated either by Flask-Login or by Facebook OAuth
+        # User is authenticated either by Flask-Login or by Google OAuth
         return render_template("dashboard.html", user=current_user)
-    elif "facebook_token" in session:
-        # User is authenticated with Facebook OAuth
-        # You can retrieve user information from the session or call Facebook API if needed
-        return render_template("dashboard.html", user=session["user"])
     else:
-        # User is not authenticated with Flask-Login or Facebook OAuth
+        # User is not authenticated with either Flask-Login or Google OAuth
         flash("You need to be logged in to access the dashboard.", "warning")
-        # Redirect the user to the Facebook login route
-        return redirect(url_for("fb_app.facebook_login"))
-
-
-# @login_app.route("/logout")
-# def logout():
-#     if current_user.is_authenticated:
-#         logout_user()  # Logout the user authenticated by Flask-Login
-#         return redirect(url_for("login_app.first")) 
+        return redirect(url_for("login_app.home"))
     
-#     if session.get("user"):
-#         session.pop('user')  # Clear the Google OAuth session
-#         return redirect(url_for("login_app.first"))  
+# @login_app.route("/dashboard", methods=['GET', 'POST'])
+# def dashboard():
+#     if current_user.is_authenticated or session.get("user"):
+#         # User is authenticated either by Flask-Login or by Facebook OAuth
+#         return render_template("dashboard.html", user=current_user)
+#     elif "facebook_token" in session:
+#         # User is authenticated with Facebook OAuth
+#         # You can retrieve user information from the session or call Facebook API if needed
+#         return render_template("dashboard.html", user=session["user"])
+#     else:
+#         # User is not authenticated with Flask-Login or Facebook OAuth
+#         flash("You need to be logged in to access the dashboard.", "warning")
+#         # Redirect the user to the Facebook login route
+#         return redirect(url_for("fb_app.facebook_login"))
+
 
 @login_app.route("/logout")
 def logout():
     if current_user.is_authenticated:
         logout_user()  # Logout the user authenticated by Flask-Login
+        return redirect(url_for("login_app.first")) 
     
     if session.get("user"):
         session.pop('user')  # Clear the Google OAuth session
+        return redirect(url_for("login_app.first"))  
 
-    if "facebook_token" in session:
-        session.pop("facebook_token")  # Clear the Facebook token from the session
+# @login_app.route("/logout")
+# def logout():
+#     if current_user.is_authenticated:
+#         logout_user()  # Logout the user authenticated by Flask-Login
+    
+#     if session.get("user"):
+#         session.pop('user')  # Clear the Google OAuth session
 
-    return redirect(url_for("login_app.first"))     
+#     if "facebook_token" in session:
+#         session.pop("facebook_token")  # Clear the Facebook token from the session
+
+#     return redirect(url_for("login_app.first"))     
     
 @login_app.route("/about")
 def about():
