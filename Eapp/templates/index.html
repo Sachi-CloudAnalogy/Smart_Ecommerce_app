@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Website</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+
+    <section>
+        <header>
+            <a href="/" class="logo">Smart<span>Buy</span></a>
+            <ul>
+                <li><a href="{{url_for('login_app.first')}}">Home</a></li>
+                <li><a href="{{url_for('login_app.about')}}">About</a></li>
+                <li><a href="{{url_for('login_app.dashboard')}}">Products</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            <ul>
+            <li><p><a href="{{url_for('login_app.register')}}">Sign up</a></p></li>
+            <li><a href="{{url_for('login_app.home')}}"><p>Sign In</p></a></li>
+            </ul>
+        </header>
+
+        <div class="texts">
+            <h1>Smart Buy</h1>
+            <p> Why shop online ??<br><br>
+                Easy to compare prices with blockbuster deals.<br>
+                 Huge variety and plethora of options.	<br>
+                 No need to go in crowded places.	<br>
+                 Privacy in terms of discreet shopping.	<br>
+                 Send online gifts.	<br>
+                 Better and affordable price range.<br>
+            </p>
+
+        </div>
+
+        <div class="background_image">
+            <img src="static/Images/bg.jpg" style="height:80%;width:60%;">
+            <!-- <img src="static/Images/bg.png"> -->
+        </div>
+
+        <div class="btn">
+            <a href="{{ url_for('login_app.dashboard') }}"><p>Shop Now</p></a>
+        </div>
+    </section>
+    <div class="about">
+        <h1 style="text-align:center;font-size:xx-large;">Categories</h1>
+        <div class="box">
+            <div class="card">
+                <a href="{{ url_for('login_app.dashboard') }}"><img src="static/Images/il.png"></a>
+            </div>
+            <div class="card">
+                <a href="{{ url_for('login_app.dashboard') }}"><img src="static/Images/im.png"></a>
+            </div>
+            <div class="card">
+                <a href="{{ url_for('login_app.dashboard') }}"><img src="static/Images/if.png"></a>
+            </div>
+            <div class="card">
+                <a href="{{ url_for('login_app.dashboard') }}"><img src="static/Images/itv.png"></a>
+            </div>
+            <div class="card">
+                <a href="{{ url_for('login_app.dashboard') }}"><img src="static/Images/iwm.png"></a>
+            </div>
+        </div>
+        <hr>
+
+<footer class="footer">
+    <div class="main">
+        <div class="row">
+            <div class="footer_col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">about us</a></li>
+                    <li><a href="#">our services</a></li>
+                    <li><a href="#">privacy policy</a></li>
+                    <li><a href="#">affiliate program</a></li>
+                </ul>
+            </div>
+
+            <div class="footer_col">
+                <h4>Get Help</h4>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">shiping</a></li>
+                    <li><a href="#">returns</a></li>
+                    <li><a href="#">payment options</a></li>
+                </ul>
+            </div>
+
+            <div class="footer_col">
+                <h4>Online</h4>
+                <ul>
+                    <li><a href="#">Laptop</a></li>
+                    <li><a href="#">TV</a></li>
+                    <li><a href="#">Ac</a></li>
+                    <li><a href="#">Washing Machine</a></li>
+                </ul>
+            </div>
+
+            <div class="footer_col">
+                <h4>Follower us</h4>
+                <div class="social">
+                    <a href="#"><img src="static/image/facebook.png"></a>
+                    <a href="#"><img src="static/image/Googlell.png"></a>
+                    <a href="#"><img src="static/image/twitter.png"></a>
+                    <a href="#"><img src="staticimage/instagram.png"></a>
+                </div>               
+                    
+                
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
