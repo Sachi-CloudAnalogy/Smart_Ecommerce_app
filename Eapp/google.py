@@ -8,13 +8,6 @@ from .models import Eapp
 import requests
 
 
-# oauth = OAuth()
-# oauth.register("myApp",
-#                client_id=app_conf.get("OAUTH2_CLIENT_ID"),
-#                client_secret=app_conf.get("OAUTH2_CLIENT_SECRET"),
-#                server_metadata_url=app_conf.get("OAUTH2_META_URL"),
-#                client_kwargs={"scope": "openid profile email https://www.googleapis.com/auth/user.gender.read",}
-#                 )
 
 google_app = Blueprint("google_app", __name__)
 
