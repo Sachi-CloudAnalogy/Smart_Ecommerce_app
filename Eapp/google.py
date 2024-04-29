@@ -8,8 +8,6 @@ from .models import Eapp
 import requests
 
 
-
-
 # oauth = OAuth()
 # oauth.register("myApp",
 #                client_id=app_conf.get("OAUTH2_CLIENT_ID"),
