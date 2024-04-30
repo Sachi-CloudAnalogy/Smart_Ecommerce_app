@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %} Cart {% endblock %}
+{% block content %}
+
+<section style="height: 5vh;">
+    <header>
+        <a href="/" class="logo">Smart<span>Buy</span></a>
+        <ul>
+            <li><a href="{{url_for('login_app.first')}}">Home</a></li>
+            <li><a href="{{url_for('login_app.about')}}">About</a></li>
+            <li><a href="{{url_for('login_app.dashboard')}}">Products</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <p><a href="{{url_for('login_app.logout')}}">Logout</a></p>
+    </header>
+</section>
+
+<br>
+<h1 class="mx-5 my-5">--------CART--------</h1><br>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Previous Price</th>
+            <th scope="col">Current Price</th>
+            <th scope="col">Quantity</th>
+            <!-- <th scope="col">Product Picture</th> -->
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        <tr>
+                <th scope="row">{{ item.id }}</th>
+                <td>{{ item.product_name }}</td>
+                <td>{{ item.previous_price }}</td>
+                <td>{{ item.current_price }}</td>
+                
+                <td><form action="{{ url_for('product.cart', id=item.id) }}" method="POST">
+                    <!-- <input type="text" placeholder="{{item.quantity if item.quantity else 1}}" name="quantity" value="1"> -->
+                    <input type="number" name="quantity" value="{{ item.quantity if item.quantity else 1 }}" min="1">
+                    <button type="submit" class="btn btn-primary mt-2">Update</button>
+                </form></td>
+                <!-- <td><img src="{{ item.product_picture }}" alt="" style="height: 50px; width: 50px; border-radius: 2px;"></td> -->
+    
+
+            <td>
+                <a href="{{ url_for('product.payment', id=item.id, sno=item.sno) }}"><button type="button" class="btn btn-dark">Buy Now</button></a>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="{{ url_for('product.show_added_item') }}"><button type="button" class="btn btn-dark">Add more items</button></a></td>
+        </tr>
+
+
+    </tbody>
+</table>
+
+<!-- Link to CSS file -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+{% endblock %}
